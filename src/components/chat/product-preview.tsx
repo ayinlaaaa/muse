@@ -30,24 +30,32 @@ export function ProductPreview() {
   const isInView = useInView(containerRef, { once: false, amount: 0.5 });
   
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    let cancelled = false;
+
     if (!isInView) {
-      setStep(-1);
-      return;
+      timeout = setTimeout(() => setStep(-1), 0);
+      return () => {
+        cancelled = true;
+        if (timeout) clearTimeout(timeout);
+      };
     }
 
     const runSequence = async () => {
       for (let i = 0; i < PREVIEW_SEQUENCE.length; i++) {
-        await new Promise(resolve => {
+        await new Promise<void>((resolve) => {
           timeout = setTimeout(resolve, PREVIEW_SEQUENCE[i].delay);
         });
+        if (cancelled) return;
         setStep(i);
       }
     };
 
-    runSequence();
-    return () => clearTimeout(timeout);
+    void runSequence();
+    return () => {
+      cancelled = true;
+      if (timeout) clearTimeout(timeout);
+    };
   }, [isInView]);
 
   return (

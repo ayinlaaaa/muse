@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Geist, Instrument_Serif } from "next/font/google";
+import "@fontsource-variable/geist";
+import "@fontsource/instrument-serif/400.css";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { AuthProvider } from "@/hooks/use-auth";
 import "./globals.css";
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-});
-
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
 
 export const metadata: Metadata = {
   title: "MUSE | AI Music Companion",
@@ -39,7 +29,7 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} ${instrumentSerif.variable}`}>
+    <html lang="en">
       <body className="bg-background text-primary antialiased font-sans">
         <QueryProvider>
           <AuthProvider>

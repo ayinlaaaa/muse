@@ -8,6 +8,8 @@ import { encrypt } from "@/lib/crypto";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || new URL(request.url).origin;
+  const redirect = (path: string) => Response.redirect(new URL(path, appUrl));
   const code = searchParams.get("code");
   const state = searchParams.get("state");
   const error = searchParams.get("error");
@@ -17,11 +19,11 @@ export async function GET(request: Request) {
   const verifier = cookieStore.get("spotify_auth_verifier")?.value;
 
   if (error) {
-    return Response.redirect(`${process.env.NEXT_PUBLIC_APP_URL || ''}/?error=spotify_denied`);
+    return redirect("/?error=spotify_denied");
   }
 
   if (!code || !state || state !== savedState || !verifier) {
-    return Response.redirect(`${process.env.NEXT_PUBLIC_APP_URL || ''}/?error=invalid_auth`);
+    return redirect("/?error=invalid_auth");
   }
 
   try {
@@ -89,9 +91,9 @@ export async function GET(request: Request) {
     cookieStore.delete("spotify_auth_state");
     cookieStore.delete("spotify_auth_verifier");
 
-    return Response.redirect(`${process.env.NEXT_PUBLIC_APP_URL || ''}/chat`);
+    return redirect("/chat");
   } catch (err) {
     console.error("Auth callback error:", err);
-    return Response.redirect(`${process.env.NEXT_PUBLIC_APP_URL || ''}/?error=auth_failed`);
+    return redirect("/?error=auth_failed");
   }
 }
