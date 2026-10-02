@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -24 275 104" role="img" aria-label="MUSE">
+  <title>MUSE</title>
+  <polygon points="0,56 0,0 8,0 28,30 48,0 56,0 56,56 49,56 49,12 28,43 7,12 7,56" fill="#F2F1ED"/>
+  <circle cx="28" cy="50.5" r="4" fill="#A8E85C"/>
+  <g transform="translate(70 0)" fill="none" stroke="#F2F1ED" stroke-width="7" stroke-linejoin="miter">
+    <path d="M3.5 0 V33 A19.5 19.5 0 0 0 42.5 33 V0"/>
+  </g>
+  <g transform="translate(130 0)" fill="none" stroke="#F2F1ED" stroke-width="7">
+    <path d="M41.5 15.75 A19 12.25 0 0 0 3.5 15.75 A19 12.25 0 0 0 22.5 28 A19 12.25 0 0 1 41.5 40.25 A19 12.25 0 0 1 22.5 52.5 A19 12.25 0 0 1 3.5 40.25"/>
+  </g>
+  <g transform="translate(189 0)" fill="none" stroke="#F2F1ED" stroke-width="7" stroke-linejoin="miter">
+    <path d="M38 3.5 H3.5 V52.5 H38"/>
+    <path d="M3.5 28 H31"/>
+  </g>
+</svg>

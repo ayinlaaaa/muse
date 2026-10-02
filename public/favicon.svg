@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>MUSE</title>
+  <rect width="64" height="64" rx="14" fill="#0B0B0C"/>
+  <polygon transform="translate(14 14)" points="0,36 0,0 8.5,0 18,19.5 27.5,0 36,0 36,36 28,36 28,15 18,35 8,15 8,36" fill="#A8E85C"/>
+</svg>
